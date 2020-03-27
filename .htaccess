@@ -1,0 +1,19 @@
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([A-Za-z0-9-]+)$ index.php?page=$1 [NC,QSA,L]
+RewriteRule ^([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/?$ index.php?page=$1&id=$2 [NC,QSA,L]
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  # Images
+  ExpiresByType image/* "access plus 1 week"
+  # Video
+  ExpiresByType video/* "access plus 1 year"
+  # CSS, JavaScript
+  ExpiresByType text/css "access plus 1 week"
+  ExpiresByType text/javascript "access plus 1 week"
+  ExpiresByType application/javascript "access plus 1 week"
+  # Others
+  ExpiresByType application/pdf "access plus 1 year"
+</IfModule>
